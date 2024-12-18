@@ -25,12 +25,12 @@ func NewTemplateData() TemplateData {
 	}
 }
 
-func GetTemplate(path string) (templ *template.Template, name string, err error) {
+func GetTemplate(page string) (templ *template.Template, name string, err error) {
 	name = "base"
 	templ, err = template.New(name).ParseFiles(
 		"ui/html/base.html",
 		"ui/html/partials/navbar.html",
-		path,
+		page,
 	)
 	if err != nil {
 		return nil, "", err

@@ -38,8 +38,11 @@ func TemplateResponse(w http.ResponseWriter, content *template.Template, name st
 	h.Set(http.CanonicalHeaderKey("Content-Type"), "text/html")
 
 	var buf bytes.Buffer
+
 	templ := &Template{templates: content}
-	templ.Render(&buf, name, data)
+	if err := templ.Render(&buf, name, data); err != nil {
+		return err
+	}
 
 	return response(w, &buf, status)
 }
